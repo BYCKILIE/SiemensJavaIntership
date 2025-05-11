@@ -1,0 +1,21 @@
+services:
+  identity_db:
+    container_name: identity-db
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: byke
+      POSTGRES_PASSWORD: byke
+      POSTGRES_DB: identity_db
+    ports:
+      - "5401:5432"
+    networks: [ license ]
+    volumes:
+      - ./identity-db:/var/lib/postgresql/data
+
+volumes:
+  identity-db:
+    driver: local
+
+networks:
+  license:
+    external: true
